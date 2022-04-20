@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const bookSchema = new Schema({
 
-  name: {
+  title: {
     type: String,
     required: [true, 'Name is required'],
   },

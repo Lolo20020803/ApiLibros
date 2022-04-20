@@ -9,7 +9,7 @@ function getBookById(req, res) {
   });
 }
 function getAutorInBook(req, res) {
-  Book.findOne(req.params.name, (err, book) => {
+  Book.findOne(req.params.title, (err, book) => {
     if (err) {
       return res.status(400).send(err.message);
     }
@@ -17,11 +17,11 @@ function getAutorInBook(req, res) {
   });
 }
 function getAllBooks(req, res) {
-  Book.find({ }, (err, user) => {
+  Book.find({ }, (err, book) => {
     if (err) {
       return res.status(400).send(err.message);
     }
-    return res.send(user);
+    return res.send(book);
   });
 }
 
