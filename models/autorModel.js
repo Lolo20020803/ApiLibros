@@ -15,6 +15,10 @@ const autorSchema = new Schema({
     type: String,
     require: [true, 'Nationality is require'],
   },
+  books: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Book',
+  }],
 });
 
-module.exports = mongoose.model(autorSchema);
+module.exports = mongoose.model('Autor', autorSchema);

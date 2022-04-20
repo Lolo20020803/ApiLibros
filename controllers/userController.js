@@ -1,4 +1,4 @@
-const User = require('../model/userModel');
+const User = require('../models/userModel');
 
 function standar(req, res) {
   return res.json({ text: 'Main Page' });
