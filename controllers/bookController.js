@@ -1,4 +1,3 @@
-const autorModel = require('../models/autorModel');
 const Book = require('../models/bookModel');
 
 function getBookById(req, res) {
@@ -9,7 +8,7 @@ function getBookById(req, res) {
     return res.send(BookData);
   });
 }
-function getAutorInBook(req,  res) {
+function getAutorInBook(req, res) {
   Book.findOne(req.params.name, (err, book) => {
     if (err) {
       return res.status(400).send(err.message);
@@ -17,7 +16,17 @@ function getAutorInBook(req,  res) {
     return res.send(book.author);
   });
 }
+function getAllBooks(req, res) {
+  Book.find({ }, (err, user) => {
+    if (err) {
+      return res.status(400).send(err.message);
+    }
+    return res.send(user);
+  });
+}
+
 module.exports = {
   getBookById,
   getAutorInBook,
+  getAllBooks,
 };

@@ -3,6 +3,14 @@ const User = require('../models/userModel');
 function standar(req, res) {
   return res.json({ text: 'Main Page' });
 }
+function getAllUser(req, res) {
+  User.find({ }, (err, user) => {
+    if (err) {
+      return res.status(400).send(err.message);
+    }
+    return res.send(user);
+  });
+}
 
 function getUsuarioById(req, res) {
   User.findById(req.params.id, (err, userData) => {
@@ -48,4 +56,5 @@ module.exports = {
   updateUser,
   getUserByEmail,
   standar,
+  getAllUser,
 };
