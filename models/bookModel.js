@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mysql = require('mysql');
 
-const { Schema } = mongoose;
+const { Schema } = mysql;
 
 const bookSchema = new Schema({
 

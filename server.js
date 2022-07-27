@@ -1,4 +1,5 @@
-const sql = require('mssql');
+const res = require('express/lib/response');
+const mysql = require('mysql');
 const app = require('./app');
 require('dotenv').config();
 /*
@@ -11,19 +12,16 @@ mongoose.connect(db, (err) => {
 });
 */
 const config = {
-  "user": 'admin', // default is sa
-  "password": process.env.PASS,
-  "server": process.env.URL + ':' + process.env.PORT,
-  "database": "bookdatabase", // name of database
-  "options": {
-      "encrypt": true
-  }
+  host     : process.env.DATABASE_URL,
+  user     : process.env.DATABASE_USER,
+  password : process.env.DATABASE_PASS,
+  port     : process.env.DATABASE_PORT,
+  database : "bookDataBase"
+};
+
+async function query(sql, params) {
+  const connection = await mysql.createConnection(config);
+  const [results, ] = await connection.execute(sql, params);
+  return results;
 }
-sql.connect(config, err => {
-  if (err) {
-    console.log('Error connecting data base');
-  };
-  console.log('Conection correct');
-  app.listen(process.env.PORT, () => {console.log(`Node Server running in ${config.server}`)});
-});
 module.exports = app;

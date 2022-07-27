@@ -11,7 +11,7 @@ const app = express();
 // Determinate we use json files
 app.use(express.json());
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/user', userPath);
 app.use('/book', bookPath);
